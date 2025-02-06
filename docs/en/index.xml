@@ -1,0 +1,71 @@
+
+    
+  <?xml version="1.0" encoding="utf-8" standalone="yes"?>
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Zawfield</title>
+      <link>https://www.zawfield.com/en/</link>
+      <description>Recent content on Zawfield</description>
+      <generator>Hugo</generator>
+      <language>en</language>
+      <copyright>Build By Hugo. Theme From PolyRhythmic.</copyright>
+      <lastBuildDate>Fri, 31 Jan 2025 08:09:59 +0900</lastBuildDate>
+      <atom:link href="https://www.zawfield.com/en/index.xml" rel="self" type="application/rss+xml" />
+      <item>
+        <title>20250131-Hugo-Bundle-Shared-Resource-Not-Parsed-Correctly</title>
+        <link>https://www.zawfield.com/en/posts/hugo-multilingual-bundle-shared-resource-not-parsed-correctly/</link>
+        <pubDate>Fri, 31 Jan 2025 08:09:59 +0900</pubDate>
+        <guid>https://www.zawfield.com/en/posts/hugo-multilingual-bundle-shared-resource-not-parsed-correctly/</guid>
+        <description>This is a new article excerpt, awaiting editorial content.</description>
+      </item>
+      <item>
+        <title>About Zawfield</title>
+        <link>https://www.zawfield.com/en/about/</link>
+        <pubDate>Tue, 28 Jan 2025 15:02:09 +0900</pubDate>
+        <guid>https://www.zawfield.com/en/about/</guid>
+        <description></description>
+      </item>
+      <item>
+        <title>QA Guided Tour</title>
+        <link>https://www.zawfield.com/en/qa-guided-tour/</link>
+        <pubDate>Tue, 28 Jan 2025 15:02:09 +0900</pubDate>
+        <guid>https://www.zawfield.com/en/qa-guided-tour/</guid>
+        <description>Very quick guided tour, only a few questions and I can recommend a good order to visit.</description>
+      </item>
+      <item>
+        <title>20250128-Slicer-Thinwall-NozzleD-Unexpected-Fix</title>
+        <link>https://www.zawfield.com/en/posts/slicer-thinwall-nozzled-unexpected-fix/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/en/posts/slicer-thinwall-nozzled-unexpected-fix/</guid>
+        <description>This is a new article excerpt, awaiting editorial content.</description>
+      </item>
+      <item>
+        <title>First-Bundle-Post</title>
+        <link>https://www.zawfield.com/en/posts/first-bundle-post/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/en/posts/first-bundle-post/</guid>
+        <description>&lt;h1 id=&#34;first-bundle-post&#34;&gt;&#xD;&#xA;&#xD;&#xA;  First Bundle Post&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#first-bundle-post&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h1&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Write article content here.&lt;/p&gt;</description>
+      </item>
+      <item>
+        <title>Hugo-Custom-Page-Navigation</title>
+        <link>https://www.zawfield.com/en/posts/hugo-custom-page-navigation/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/en/posts/hugo-custom-page-navigation/</guid>
+        <description>&lt;h1 id=&#34;hugo-custom-page-navigation&#34;&gt;&#xD;&#xA;&#xD;&#xA;  Hugo Custom Page Navigation&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#hugo-custom-page-navigation&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h1&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Write article content here.&lt;/p&gt;</description>
+      </item>
+      <item>
+        <title>Hugo-Custom-Page-Navigation-2</title>
+        <link>https://www.zawfield.com/en/posts/hugo-custom-page-navigation-2/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/en/posts/hugo-custom-page-navigation-2/</guid>
+        <description>&lt;h1 id=&#34;hugo-custom-page-navigation-2&#34;&gt;&#xD;&#xA;&#xD;&#xA;  Hugo Custom Page Navigation 2&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#hugo-custom-page-navigation-2&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h1&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;Write article content here.&lt;/p&gt;</description>
+      </item>
+      <item>
+        <title>Orca-Slicer-After-Toolchange-Placeholder-Trap</title>
+        <link>https://www.zawfield.com/en/posts/orca-slicer-after-toolchange-placeholder-trap/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/en/posts/orca-slicer-after-toolchange-placeholder-trap/</guid>
+        <description>This is a new article excerpt, awaiting editorial content.</description>
+      </item>
+    </channel>
+  </rss>

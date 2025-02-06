@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>This-Website on Zawfield 造物フィールド</title>
+      <link>https://www.zawfield.com/ja/creations/this-website/</link>
+      <description>Recent content in This-Website on Zawfield 造物フィールド</description>
+      <generator>Hugo</generator>
+      <language>ja</language>
+      <copyright>Build By Hugo. Theme From PolyRhythmic.</copyright>
+      <atom:link href="https://www.zawfield.com/ja/creations/this-website/index.xml" rel="self" type="application/rss+xml" />
+      <item>
+        <title>First-Bundle-Post</title>
+        <link>https://www.zawfield.com/ja/posts/first-bundle-post/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/ja/posts/first-bundle-post/</guid>
+        <description>&lt;h1 id=&#34;first-bundle-post&#34;&gt;&#xD;&#xA;&#xD;&#xA;  First Bundle Post&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#first-bundle-post&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h1&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;記事の内容を記入します。&lt;/p&gt;</description>
+      </item>
+    </channel>
+  </rss>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Posts on Zawfield 造物フィールド</title>
+      <link>https://www.zawfield.com/ja/posts/</link>
+      <description>Recent content in Posts on Zawfield 造物フィールド</description>
+      <generator>Hugo</generator>
+      <language>ja</language>
+      <copyright>Build By Hugo. Theme From PolyRhythmic.</copyright>
+      <lastBuildDate>Fri, 31 Jan 2025 08:09:59 +0900</lastBuildDate>
+      <atom:link href="https://www.zawfield.com/ja/posts/index.xml" rel="self" type="application/rss+xml" />
+      <item>
+        <title>20250131-Hugo-Bundle-Shared-Resource-Not-Parsed-Correctly</title>
+        <link>https://www.zawfield.com/ja/posts/hugo-multilingual-bundle-shared-resource-not-parsed-correctly/</link>
+        <pubDate>Fri, 31 Jan 2025 08:09:59 +0900</pubDate>
+        <guid>https://www.zawfield.com/ja/posts/hugo-multilingual-bundle-shared-resource-not-parsed-correctly/</guid>
+        <description>これは新しい記事の抜粋です。今は編集内容を待っています。</description>
+      </item>
+      <item>
+        <title>20250128-Slicer-Thinwall-NozzleD-Unexpected-Fix</title>
+        <link>https://www.zawfield.com/ja/posts/slicer-thinwall-nozzled-unexpected-fix/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/ja/posts/slicer-thinwall-nozzled-unexpected-fix/</guid>
+        <description>これは新しい記事の抜粋です。今は編集内容を待っています。</description>
+      </item>
+      <item>
+        <title>First-Bundle-Post</title>
+        <link>https://www.zawfield.com/ja/posts/first-bundle-post/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/ja/posts/first-bundle-post/</guid>
+        <description>&lt;h1 id=&#34;first-bundle-post&#34;&gt;&#xD;&#xA;&#xD;&#xA;  First Bundle Post&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#first-bundle-post&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h1&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;記事の内容を記入します。&lt;/p&gt;</description>
+      </item>
+      <item>
+        <title>Hugo-Custom-Page-Navigation</title>
+        <link>https://www.zawfield.com/ja/posts/hugo-custom-page-navigation/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/ja/posts/hugo-custom-page-navigation/</guid>
+        <description>&lt;h1 id=&#34;hugo-custom-page-navigation&#34;&gt;&#xD;&#xA;&#xD;&#xA;  Hugo Custom Page Navigation&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#hugo-custom-page-navigation&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h1&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;記事の内容を記入します。&lt;/p&gt;</description>
+      </item>
+      <item>
+        <title>Hugo-Custom-Page-Navigation-2</title>
+        <link>https://www.zawfield.com/ja/posts/hugo-custom-page-navigation-2/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/ja/posts/hugo-custom-page-navigation-2/</guid>
+        <description>&lt;h2 id=&#34;hugo-custom-page-navigation-2&#34;&gt;&#xD;&#xA;&#xD;&#xA;  Hugo Custom Page Navigation 2&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#hugo-custom-page-navigation-2&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h2&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;記事の内容を記入します。&lt;/p&gt;&#xA;&lt;h2 id=&#34;原因&#34;&gt;&#xD;&#xA;&#xD;&#xA;  原因&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#%e5%8e%9f%e5%9b%a0&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h2&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;調查&#34;&gt;&#xD;&#xA;&#xD;&#xA;  調查&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#%e8%aa%bf%e6%9f%a5&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h2&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;対処&#34;&gt;&#xD;&#xA;&#xD;&#xA;  対処&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#%e5%af%be%e5%87%a6&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h2&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;結果&#34;&gt;&#xD;&#xA;&#xD;&#xA;  結果&#xD;&#xA;&#xD;&#xA;  &lt;a &#xD;&#xA;    class=&#34;anchor&#34;&#xD;&#xA;    href=&#34;#%e7%b5%90%e6%9e%9c&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;i class=&#34;icon&#34;&gt;&#xD;&#xA;      link&#xD;&#xA;    &lt;/i&gt;&#xD;&#xA;    &#xD;&#xA;    &lt;span&gt;&#xD;&#xA;      h2&#xD;&#xA;    &lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;hr&gt;</description>
+      </item>
+      <item>
+        <title>Orca-Slicer-After-Toolchange-Placeholder-Trap</title>
+        <link>https://www.zawfield.com/ja/posts/orca-slicer-after-toolchange-placeholder-trap/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/ja/posts/orca-slicer-after-toolchange-placeholder-trap/</guid>
+        <description>これは新しい記事の抜粋です。今は編集内容を待っています。</description>
+      </item>
+    </channel>
+  </rss>

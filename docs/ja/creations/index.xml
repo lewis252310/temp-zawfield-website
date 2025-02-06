@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Creations on Zawfield 造物フィールド</title>
+      <link>https://www.zawfield.com/ja/creations/</link>
+      <description>Recent content in Creations on Zawfield 造物フィールド</description>
+      <generator>Hugo</generator>
+      <language>ja</language>
+      <copyright>Build By Hugo. Theme From PolyRhythmic.</copyright>
+      <atom:link href="https://www.zawfield.com/ja/creations/index.xml" rel="self" type="application/rss+xml" />
+      <item>
+        <title>This-Website</title>
+        <link>https://www.zawfield.com/ja/creations/this-website/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://www.zawfield.com/ja/creations/this-website/</guid>
+        <description></description>
+      </item>
+    </channel>
+  </rss>
