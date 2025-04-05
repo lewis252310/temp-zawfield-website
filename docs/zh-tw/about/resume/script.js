@@ -55,7 +55,7 @@ const storage = {
 async function initStorage(mainContent) {
     let blocks, tags, sections;
     try {
-        const response = await fetch("{{ .jsonPath }}");
+        const response = await fetch("/zh-tw/about/resume/data.json");
         if (!response.ok) {
             throw new Error("網路錯誤");
         };
