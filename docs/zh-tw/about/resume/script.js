@@ -268,13 +268,27 @@ async function initStorage() {
             })?.["idx"];
             if (!tagIdx) {
                 tagIdx = `${currentTagIdx}`;
-                storage.tags[tagIdx] = { idx: tagIdx, id: tagId, display: tagId, active: false, visible: true }
+                storage.tags[tagIdx] = {
+                    idx: tagIdx,
+                    id: tagId,
+                    display: tagId,
+                    active: false,
+                    visible: true
+                }
                 currentTagIdx++;
                 tagsList = Object.values(storage.tags);
             }
             return tagIdx;
-        })
+        });
         block["tags"] = idxTags;
+        idxTags.forEach(idx => {
+            const bks = storage.tags[idx]["blocks"];
+            if (Array.isArray(bks)) {
+                bks.push(block["idx"]);
+            } else {
+                storage.tags[idx]["blocks"] = [block["idx"]];
+            }
+        })
         block["active"] = false;
         block["visible"] = true;
         storage.blocks[block["idx"]] = block;
@@ -687,24 +701,34 @@ function refreshContent() {
     storage.sectionOrder.forEach(idx => {
         buildDomElement(idx);
     });
-
-    storage.blockOrder.forEach(idx => {
-        const block = storage.blocks[idx];
-        if (!block["active"] || !block["visible"]) {
+    
+    const blockUsageSet = new Set();
+    storage.tagOrder.forEach(idx => {
+        const tag = storage.tags[idx];
+        if (!tag["active"] || !tag["visible"]) {
             return;
         }
-        const targetSec = storage.sections[block["section"]];
-        const section = document.getElementById(targetSec["id"])
-        if (!section) {
-            return;
-        }
-        const doc = parser.parseFromString(block["content"], "text/html");
-        const frag = document.createDocumentFragment();
-        while (doc.body.firstChild) {
-            frag.appendChild(doc.body.firstChild);
-        }
-        section.append(frag);
-    })
+        tag["blocks"].forEach(bIdx => {
+            const block = storage.blocks[bIdx];
+            if (!block["active"] || !block["visible"]) {
+                return;
+            }
+            if (blockUsageSet.has(bIdx)) {
+                return;
+            }
+            const section = document.getElementById(storage.sections[block["section"]]["id"])
+            if (!section) {
+                return;
+            }
+            blockUsageSet.add(bIdx);
+            const doc = parser.parseFromString(block["content"], "text/html");
+            const frag = document.createDocumentFragment();
+            while (doc.body.firstChild) {
+                frag.appendChild(doc.body.firstChild);
+            }
+            section.append(frag);
+        })
+    });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -749,9 +773,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     storage.mode = mode;
     if (mode === "0") {
-        console.log("importing Sortable");
         await import("https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js");
-        console.log("import proc down.");
+        console.log("All import proc down.");
     }
 
     if (query["debug"] && query["debug"] === "1") {
