@@ -283,11 +283,16 @@ async function initStorage() {
         block["tags"] = idxTags;
         idxTags.forEach(idx => {
             const bks = storage.tags[idx]["blocks"];
-            if (Array.isArray(bks)) {
-                bks.push(block["idx"]);
+            if (bks) {
+                bks[block["idx"]] = null;
             } else {
-                storage.tags[idx]["blocks"] = [block["idx"]];
+                storage.tags[idx]["blocks"] = {[block["idx"]]: null}
             }
+            // if (Array.isArray(bks)) {
+            //     bks.push(block["idx"]);
+            // } else {
+            //     storage.tags[idx]["blocks"] = [block["idx"]];
+            // }
         })
         block["active"] = false;
         block["visible"] = true;
@@ -320,43 +325,36 @@ function refreshActiveState(clickTarget, activeColl) {
 }
 
 function refreshFilterPanel(panel) {
-    if (!panel) {
-        return;
-    }
-
     const storg = getPanelRelatedDatas(panel)?.["storage"];
     if (!storg) {
         return;
     }
     [...panel.children].forEach(btn => {
         const idx = btn.dataset.buttonIdx;
-        const vi = btn.querySelector("i.icon.visib");
-        if (storg[idx]["visible"]) {
-            btn.classList.toggle("visible", storg[idx]["visible"]);
-            vi && (vi.textContent = "visibility");
-        } else {
-            btn.classList.toggle("visible", storg[idx]["visible"]);
-            vi && (vi.textContent = "visibility_off");
-        }
+        btn.classList.toggle("visible", storg[idx]["visible"]);
         btn.classList.toggle("active", storg[idx]["active"]);
+        if (storage.debug) {
+            const vi = btn.querySelector("i.icon.visib");
+            if (storg[idx]["visible"]) {
+                vi && (vi.textContent = "visibility");
+            } else {
+                vi && (vi.textContent = "visibility_off");
+            }
+            const active = btn.querySelector("i.icon.active");
+            if (storg[idx]["active"]) {
+                active && (active.textContent = "select_check_box");
+            } else {
+                active && (active.textContent = "check_box_outline_blank");
+            }    
+        } else {
+            const active = btn.querySelector("i.icon.active");
+            if (storg[idx]["active"]) {
+                active && (active.textContent = "visibility");
+            } else {
+                active && (active.textContent = "visibility_off");
+            }    
+        }
     })
-}
-
-/**
- * @returns {HTMLDivElement[]} a list of eye, up, down btn woth order
- */
-function genControlBtns() {
-    // 可見與否
-    const eye = document.createElement("i");
-    eye.className = "icon filter-icon visib";
-    eye.dataset.action = "visible";
-    eye.textContent = "visibility";
-    
-    const drag = document.createElement("i");
-    drag.className = "icon filter-icon drag-handle";
-    drag.dataset.action = "none";
-    drag.textContent = "drag_indicator";
-    return [drag, eye];
 }
 
 /**
@@ -381,6 +379,55 @@ function reCalcStoragedOrder(panel, item) {
 }
 
 /**
+ * @returns {HTMLDivElement[]} a list of eye, up, down btn woth order
+ */
+function genFilterItemContent(display, id) {
+    const _r = [];
+
+    const text = document.createElement("div");
+    text.className = "filter-label";
+    text.textContent = display;
+
+    if (storage.debug) {
+        const drag = document.createElement("i");
+        drag.className = "icon filter-icon drag-handle";
+        drag.dataset.action = "none";
+        drag.textContent = "drag_indicator";
+        _r.push(drag);
+
+        // 可見與否
+        const eye = document.createElement("i");
+        eye.className = "icon filter-icon visib";
+        eye.dataset.action = "visible";
+        eye.textContent = "visibility";
+        _r.push(eye);
+
+        const select = document.createElement("i");
+        select.className = "icon filter-icon active";
+        select.dataset.action = "active";
+        select.textContent = "select_check_box";
+        _r.push(select);
+
+        const textContainer = document.createElement("div");
+        textContainer.classList = "label-container";
+        const idTag = document.createElement("div");
+        idTag.textContent = `#${id}`;
+        textContainer.dataset.action = "link";
+        textContainer.append(text, idTag)
+        _r.push(textContainer);
+    } else {
+        const eye = document.createElement("i");
+        eye.className = "icon filter-icon active";
+        eye.dataset.action = "active";
+        eye.textContent = "visibility";
+        _r.push(eye);
+        text.dataset.action = "link";
+        _r.push(text);
+    }
+    return _r;
+}
+
+/**
  * @returns { HTMLElement[] } panels for builded
  */
 function initFilterPanel() {
@@ -388,15 +435,8 @@ function initFilterPanel() {
     const filterPanel = document.getElementById("filter-panel");
     filterPanel.innerHTML = "";
 
-    const genPanrlItemTextEle = (content) => {
-        const text = document.createElement("div");
-        text.className = "filter-label";
-        text.textContent = content;
-        return text;
-    }
-
     const sectionTitle = document.createElement("h5");
-    sectionTitle.textContent = "資訊塊"
+    sectionTitle.textContent = "履歷目錄"
     filterPanel.appendChild(sectionTitle);
     const secPanel = document.createElement("div");
     secPanel.classList += "panel"
@@ -427,20 +467,9 @@ function initFilterPanel() {
         const secBtn = document.createElement("div");
         secBtn.classList.add("tag-btn", "component", "button");
         secBtn.dataset.buttonIdx = idx;
-
-        if (storage.debug) {
-            secBtn.append(...genControlBtns());
-            const textContainer = document.createElement("div");
-            textContainer.classList = "label-container";
-            const btnIdEle = document.createElement("div");
-            btnIdEle.textContent = `#${section["id"]}`;
-            textContainer.append(genPanrlItemTextEle(display), btnIdEle)
-            secBtn.append(textContainer);
-        } else {
-            secBtn.append(genPanrlItemTextEle(display));
-        }
+        secBtn.append(...genFilterItemContent(display, section["id"]));
         secPanel.appendChild(secBtn);
-    })
+    });
     const tagTitle = document.createElement("h5");
     tagTitle.textContent = "關鍵字"
     filterPanel.appendChild(tagTitle);
@@ -449,7 +478,7 @@ function initFilterPanel() {
     tagPanel.dataset.collection = "tag"
     tagPanel.addEventListener("click", (e) => {
         buttonActive(e);
-    })
+    });
     filterPanel.appendChild(tagPanel);
     new Sortable(tagPanel, {
         animation: 150,
@@ -470,18 +499,7 @@ function initFilterPanel() {
         tagBtn.classList.add("tag-btn", "component", "button");
         tagBtn.dataset.buttonIdx = idx;
         const display = tag["display"] || `#${tag["id"]}`;
-
-        if (storage.debug) {
-            tagBtn.append(...genControlBtns());
-            const textContainer = document.createElement("div");
-            textContainer.classList = "label-container";
-            const btnIdEle = document.createElement("div");
-            btnIdEle.textContent = `#${tag["id"]}`;
-            textContainer.append(genPanrlItemTextEle(display), btnIdEle)
-            tagBtn.append(textContainer);
-        } else {
-            tagBtn.append(genPanrlItemTextEle(display));
-        }
+        tagBtn.append(...genFilterItemContent(display, tag["id"]));
         tagPanel.appendChild(tagBtn);
     });
     return _r;
@@ -494,55 +512,98 @@ function buttonActive(e) {
         return;
     }
 
-    const icon = e.target.closest("i.filter-icon");
+    const roleItem = e.target.closest("[data-action]");
     const filterItem = e.target.closest("div.tag-btn.button");
     const btnIdx = parseInt(filterItem?.dataset.buttonIdx);
     const dataStorage = getPanelRelatedDatas(panel)["storage"];
     const itemData = dataStorage[btnIdx];
 
-    if (icon) {
-        const action = icon.dataset.action;
-        if (!filterItem || isNaN(btnIdx)) {
-            console.warn(`buttonActive: icon click but no valid filter item`, icon);
-            return;
-        }
+    if (!filterItem || isNaN(btnIdx)) {
+        console.warn(`buttonActive: roleItem click but no valid filter item`, roleItem);
+        return;
+    }
+    if (!storage.debug && !itemData["visible"]) {
+        return;
+    }
+    if (!roleItem) {
+        return;
+    }
+    const action = roleItem.dataset.action;
+    let needRefesh = false;
+    // 執行 roleItem 對應動作
+    switch (action) {
+        case "visible":
+            itemData["visible"] ? itemData["visible"] = false : itemData["visible"] = true;
+            if (dataStorage === storage.sections) {
+                sectionVisibleDownward(itemData["idx"], itemData["visible"]);
+            }
+            needRefesh = true;
+            break;
+        case "active":
+            itemData["active"] ? itemData["active"] = false : itemData["active"] = true;
+            // if (dataStorage === storage.sections) {
+            //     sectionActiveDownward(itemData["idx"], itemData["active"]);
+            // }
+            needRefesh = true;
+            break;
+        case "link":
+            if (!itemData["active"]) {
+                break;
+            }
+            const headerBottom = document.getElementById("header").offsetHeight;
+            const crtScroll = window.scrollY;
+            let targetEle = undefined;
 
-        // 執行 icon 對應動作
-        switch (action) {
-            case "visible":
-                itemData["visible"] ? itemData["visible"] = false : itemData["visible"] = true;
-                if (dataStorage === storage.sections) {
-                    sectionVisibleDownward(itemData["idx"], itemData["visible"]);
+            // const rootStyles = getComputedStyle(document.documentElement);
+            // const rawColor = rootStyles.getPropertyValue("--color-primary-fixed-dim").trim();
+            // console.log(rawColor);
+
+            if (panel.dataset.collection === "section") {
+                targetEle = document.getElementById(itemData["id"]);
+            } else {
+                const linkedBlocks = Object.values(itemData["blocks"]).filter(b => {
+                    return b && b.isConnected;
+                });
+                const isAtBottom = (window.innerHeight + crtScroll) >= document.body.scrollHeight - 5;
+                if (linkedBlocks.length === 1) {
+                    targetEle = linkedBlocks[0];
+                } else if (isAtBottom) {
+                    linkedBlocks.reduce((minEle, ele) => {
+                        const top = ele.getBoundingClientRect().top + crtScroll;
+                        const minTop = minEle.getBoundingClientRect().top + crtScroll;
+                        return top < minTop ? ele : minEle;
+                    });
+                } else {
+                    linkedBlocks.some((ele, index) => {
+                        const elTop = ele.getBoundingClientRect().top + crtScroll;
+                        if (elTop > crtScroll + headerBottom + 5) {
+                            targetEle = ele;
+                            return true;
+                        }
+                    });
                 }
+                if (!targetEle) {
+                    targetEle = linkedBlocks[0];
+                }
+            }
+            if (!targetEle) {
                 break;
-            case "none":
-                break;
-            default:
-                console.log(`buttonActive: unknown icon action: ${action}`);
-        }
-    } else if (!filterItem) {
-        // 不是 icon 也不是 tag-btn，代表點到空白，什麼都不做
-        return;
-    } else if (!itemData["visible"]) {
-        return;
-    } else {
-        const text = e.target.closest("div.filter-label");
-        if (!text) {
-            return;
-        }
-        if (isNaN(btnIdx) || btnIdx < 0) {
-            console.warn(`buttonActive: invalid btnIdx`, filterItem);
-            return;
-        }
-        itemData["active"] ? itemData["active"] = false : itemData["active"] = true;
-        // if (dataStorage === storage.sections) {
-        //     sectionActiveDownward(itemData["idx"], itemData["active"]);
-        // }
+            }
+            const offsetPosition = targetEle.getBoundingClientRect().top + crtScroll - headerBottom;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            break;
+        case "none":
+            break;
+        default:
+            console.log(`buttonActive: unknown roleItem action: ${action}`);
+            break;
     }
 
-    reCalcStorageBlocks();
-    refreshFilterPanel(panel);
-    refreshContentLayze();
+    if (needRefesh) {        
+        reCalcStorageBlocks();
+        refreshFilterPanel(panel);
+        refreshContentLayze();
+    }
 }
 
 function reCalcStorageBlocks() {
@@ -554,7 +615,6 @@ function reCalcStorageBlocks() {
     })
     storage.blockOrder.forEach(idx => {
         const block = storage.blocks[idx];
-        block["active"] = false;
         const targetSec = storage.sections[block["section"]];
         const blockActive = block["tags"].map(tagIdx => storage.tags[tagIdx]["active"]).includes(true);
         block["active"] = blockActive;
@@ -655,10 +715,7 @@ function refreshContent() {
         if (!item) {
             return null
         };
-        if (!item["visible"]) {
-            return null
-        };
-        if (!item["active"]) {
+        if (!item["visible"] || !item["active"]) {
             return null
         };
         const doc = parser.parseFromString(item["content"], "text/html");
@@ -705,10 +762,11 @@ function refreshContent() {
     const blockUsageSet = new Set();
     storage.tagOrder.forEach(idx => {
         const tag = storage.tags[idx];
-        if (!tag["active"] || !tag["visible"]) {
+        if (!tag["active"]) {
             return;
         }
-        tag["blocks"].forEach(bIdx => {
+        // tag["blocks"].forEach(bIdx => {
+        Object.keys(tag["blocks"]).forEach(bIdx => {
             const block = storage.blocks[bIdx];
             if (!block["active"] || !block["visible"]) {
                 return;
@@ -721,12 +779,11 @@ function refreshContent() {
                 return;
             }
             blockUsageSet.add(bIdx);
-            const doc = parser.parseFromString(block["content"], "text/html");
-            const frag = document.createDocumentFragment();
-            while (doc.body.firstChild) {
-                frag.appendChild(doc.body.firstChild);
-            }
-            section.append(frag);
+            const wrapped = `<div>${block["content"]}</div>` ;
+            const doc = parser.parseFromString(wrapped, "text/html");
+            const blockEle = doc.body.firstChild;
+            tag["blocks"][bIdx] = blockEle;
+            section.append(blockEle);
         })
     });
 }
@@ -776,7 +833,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         await import("https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js");
         console.log("All import proc down.");
     }
-
     if (query["debug"] && query["debug"] === "1") {
         storage.debug = true;
     }
@@ -912,32 +968,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const overlay = document.getElementById("filter-overlayer");
-    overlay.hidden = true;
     overlay.children[0].hidden = true;
 
     const openBtn = document.getElementById("mobile-filter-btn");
-    const changeOpenBtnContent = (state) => {
+    [0,1,2].forEach(_ => {
+        const icon = document.createElement("i");
+        icon.classList = "icon";
+        icon.textContent = "touch_app";
+        openBtn.append(icon);
+    });
+
+    const changeBtnContentTo = (iconId) => {
         [...openBtn.children].forEach(child => {
-            if (child.tagName !== "I") {
-                return;
-            }
-            child.textContent = `keyboard_double_arrow_${(state === "L") ? "left" : "right"}`;
+            child.textContent = iconId;
         })
     }
-    changeOpenBtnContent("L")
-    filterBody.dataset.open = "false";
-
     const openFilter = () => {
         filterBody.dataset.open = "true";
         overlay.hidden = false;
-        changeOpenBtnContent("R")
+        changeBtnContentTo("keyboard_double_arrow_right")
     }
-
     const closeFilter = () => {
         filterBody.dataset.open = "false";
         overlay.hidden = true;
-        changeOpenBtnContent("L")
+        changeBtnContentTo("touch_app")
     }
+
+    closeFilter();
 
     openBtn.addEventListener("click", () => {
         const state = filterBody.dataset.open;

@@ -23,7 +23,7 @@
 
 <meta 
   name="description" 
-  content="一個奇怪的腦洞大開的多用途履歷，可以使用「標籤」控制顯示與排序不同能力的資訊內容。">
+  content="一種新穎的交互式履歷，可以使用側邊的篩選器來控制項目的顯示或隱藏，以及快速跳轉到內容。">
 
 
 <meta 
@@ -33,7 +33,7 @@
 
 <title>
   
-    多用途履歷 | Zawfield 造物領域
+    交互式履歷 | Zawfield 造物領域
    
 </title>
 
@@ -135,22 +135,22 @@
 
 <meta property="og:url" content="https://www.zawfield.com/zh-tw/about/resume/">
   <meta property="og:site_name" content="Zawfield 造物領域">
-  <meta property="og:title" content="多用途履歷">
-  <meta property="og:description" content="一個奇怪的腦洞大開的多用途履歷，可以使用「標籤」控制顯示與排序不同能力的資訊內容。">
+  <meta property="og:title" content="交互式履歷">
+  <meta property="og:description" content="一種新穎的交互式履歷，可以使用側邊的篩選器來控制項目的顯示或隱藏，以及快速跳轉到內容。">
   <meta property="og:locale" content="zh_TW">
   <meta property="og:type" content="article">
     <meta property="article:section" content="about">
     <meta property="article:published_time" content="2025-01-28T15:02:09+09:00">
     <meta property="article:modified_time" content="2025-01-28T15:02:09+09:00">
 
-  <meta itemprop="name" content="多用途履歷">
-  <meta itemprop="description" content="一個奇怪的腦洞大開的多用途履歷，可以使用「標籤」控制顯示與排序不同能力的資訊內容。">
+  <meta itemprop="name" content="交互式履歷">
+  <meta itemprop="description" content="一種新穎的交互式履歷，可以使用側邊的篩選器來控制項目的顯示或隱藏，以及快速跳轉到內容。">
   <meta itemprop="datePublished" content="2025-01-28T15:02:09+09:00">
   <meta itemprop="dateModified" content="2025-01-28T15:02:09+09:00">
-  <meta itemprop="wordCount" content="6">
+  <meta itemprop="wordCount" content="11">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="多用途履歷">
-  <meta name="twitter:description" content="一個奇怪的腦洞大開的多用途履歷，可以使用「標籤」控制顯示與排序不同能力的資訊內容。">
+  <meta name="twitter:title" content="交互式履歷">
+  <meta name="twitter:description" content="一種新穎的交互式履歷，可以使用側邊的篩選器來控制項目的顯示或隱藏，以及快速跳轉到內容。">
 
 
 
@@ -576,14 +576,14 @@
     
     
       
-        <h1 class="title">多用途履歷</h1>
+        <h1 class="title">交互式履歷</h1>
       
     
 
     
     
       
-        <span class="description">一個奇怪的腦洞大開的多用途履歷，可以使用「標籤」控制顯示與排序不同能力的資訊內容。</span>
+        <span class="description">一種新穎的交互式履歷，可以使用側邊的篩選器來控制項目的顯示或隱藏，以及快速跳轉到內容。</span>
        
     
     
@@ -612,6 +612,11 @@
   <style>
     h6 {
       font-size: var(--typescale-title-large-size);
+    }
+
+    .layout.panes .layout.pane {
+      padding-left: 1.1rem;
+      padding-right: 1.5rem;
     }
 
     #post-content {
@@ -690,6 +695,19 @@
       }
     }
 
+    #filter-panel .outline {
+      text-decoration: underline;
+      font-size: calc(var(--typescale-body-large-size) * 1.2);
+      cursor: pointer;
+      min-height: 2.2rem;
+      gap: 0.3rem;
+      display: flex;
+      align-content: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: initial;
+    }
+
     #filter-panel .button {
       --container-shape: var(--shape-corner-s);
       font-size: calc(var(--typescale-body-large-size) * 1.1);
@@ -697,6 +715,7 @@
       min-height: 2.2rem;
       gap: 0.3rem;
       padding: initial;
+      padding-inline: 0.4rem;
 
       &.active {
         background-color: var(--color-primary-fixed-dim);
@@ -722,6 +741,7 @@
 
       & > .filter-icon {
         cursor: pointer;
+        width: 12%;
         height: 100%;
       }
 
@@ -732,6 +752,7 @@
         justify-content: center;
         text-align: center;
         min-width: 70%;
+        flex-grow: 1;
         height: 100%;
       }
     }
@@ -846,11 +867,7 @@
   </style>
   
   <section id="filter-body">
-    <div id="mobile-filter-btn">
-      <i class="icon">keyboard_double_arrow_left</i>
-      <i class="icon">keyboard_double_arrow_left</i>
-      <i class="icon">keyboard_double_arrow_left</i>
-    </div>
+    <div id="mobile-filter-btn"></div>
     <div id="filter-container" class="component">
       <div class="describe">
         <svg class="icon" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon">
@@ -858,7 +875,7 @@
             <polyline fill="none" points="5.5 13.2 5.5 5.8 1.5 1.2 13.5 1.2 9.5 5.8 9.5 10.2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polyline>
           </g>
         </svg>
-        點擊篩選將更新顯示資訊，並改變顯示選項的可能性。
+        點擊眼睛切換顯示或隱藏，點擊文字快速跳轉到內容。
       </div>
       <div id="filter-panel" class="component"></div>
     </div>
@@ -968,7 +985,7 @@
 
 <section class="footer-lower">
   <div class="">
-    <p>上次更新： 2025-06-16 14:01:44</p>
+    <p>上次更新： 2025-06-18 22:14:20</p>
   </div>
 
   <div class="">
