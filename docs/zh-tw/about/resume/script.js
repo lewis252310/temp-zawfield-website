@@ -1,4 +1,9 @@
-// let Sortable;
+/**
+ * Hey! You!
+ * Why whould you like look my script?
+ * This just a pice of s..t, nothing can learn on it. 
+ */
+
 const paramKeysEnum = (() => {
     const keys = {
         mode: "0",
@@ -23,7 +28,8 @@ const storage = {
     tags: {},
     sectionOrder: [],
     blockOrder: [],
-    tagOrder: []
+    tagOrder: [],
+    domEles: {},
 };
 
 window.zf = {
@@ -550,7 +556,7 @@ function buttonActive(e) {
             if (!itemData["active"]) {
                 break;
             }
-            const headerBottom = document.getElementById("header").offsetHeight;
+            const headerBottom = storage.domEles["header"].offsetHeight;
             const crtScroll = window.scrollY;
             let targetEle = undefined;
 
@@ -673,7 +679,7 @@ function sectionVisibleDownward(idx, bool) {
 }
 
 function refreshContentLayze() {
-    const overlay = document.getElementById("filter-overlayer");
+    const overlay = storage.domEles["filter-overlayer"];
     const changeHidde = ((bool) => {
         if (isPortrait()) {
             overlay.children[0].hidden = bool;
@@ -823,8 +829,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             mainContent.appendChild(document.createElement("hr"));
         })
 
-        const filterBody = document.getElementById("filter-body");
-        filterBody.innerHTML = "";
+        storage.domEles["filter-body"].innerHTML = "";
         return;
     }
 
@@ -943,20 +948,104 @@ document.addEventListener("DOMContentLoaded", async () => {
             refreshFilterPanel(panel);
         })
         refreshContent();
+        runTourHighlight();
     } else if (mode === "1") {
         // 1: view_only
         console.log("Get in 'view-only' mode");
-        const filterBody = document.getElementById("filter-body");
-        filterBody.innerHTML = "";
+        storage.domEles["filter-body"].innerHTML = "";
         refreshContent();
     } else {
 
     }
 });
 
+function runTourHighlight() {
+    const topBody = document.getElementById("top");
+    const tourHighlight = document.createElement("div");
+    topBody.appendChild(tourHighlight);
+    tourHighlight.classList = "tour-highlight";    
+    const focusOnElement = (cssStr, padding = 6) => {
+        const focEl = document.querySelector(cssStr);
+        const rect = focEl.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        const rx = (rect.width / 2) + padding;
+        const ry = (rect.height / 2) + padding;
+        tourHighlight.style.setProperty('--x', `${x}px`);
+        tourHighlight.style.setProperty('--y', `${y}px`);
+        tourHighlight.style.setProperty('--rx', `${rx}px`);
+        tourHighlight.style.setProperty('--ry', `${ry}px`);
+        return { focEl, rect };
+    }
+
+    let focusIdx = 0;
+    const tourStep = (() => {
+        const _r = [];
+        if (isPortrait()) {
+            const temp = {
+                css: "#filter-body #mobile-filter-btn", text: "Click this buttom to open the fliter panel.", padding: 20,
+            };
+            temp.callback = (focEl, clickedInside) => {
+                    if (clickedInside) {
+                        focEl.click();
+                        temp["wait"] = 300;
+                    } else {
+                        focusIdx = tourStep.length;
+                    }
+                }
+            _r.push(temp);
+        }
+        _r.push({css: "#filter-body #filter-container .describe", text: "Fliter panel describe"})
+        return _r;
+    })();
+    let clickable = true;
+    tourHighlight.addEventListener("click", (event) => {
+        if (!clickable) {
+            return;
+        }
+        const prevStep = tourStep[focusIdx];
+        if (typeof prevStep.callback === "function") {
+            const prevFocEle = prevStep["ele"] || document.querySelector(prevStep["css"]);
+            const prevRect = prevFocEle.getBoundingClientRect();
+            let clickedInside = false;
+            if (prevFocEle) {
+                const { clientX: x, clientY: y } = event;
+                clickedInside = (
+                    x >= prevRect.left &&
+                    x <= prevRect.right &&
+                    y >= prevRect.top &&
+                    y <= prevRect.bottom
+                );
+            }
+            prevStep.callback(prevFocEle, clickedInside);
+        }
+        focusIdx++
+        if (focusIdx >= tourStep.length) {
+            tourHighlight.hidden = true;
+            return;
+        }
+        const step = tourStep[focusIdx];
+        const waitTime = prevStep["wait"] || 10;
+        console.log(prevStep);
+        clickable = false;
+        setTimeout(() => {
+            const { focEl, rect } = focusOnElement(step["css"], step["padding"]);
+            step["ele"] = focEl;
+            clickable = true;
+        }, waitTime);
+    });
+    focusOnElement(tourStep[focusIdx]["css"], tourStep[focusIdx]["padding"]);
+}
+
 (() => {
-    const header = document.getElementById("header");
-    const filterBody = document.getElementById("filter-body");
+    storage.domEles["filter-body"] = document.getElementById("filter-body");
+    storage.domEles["filter-overlayer"] = document.getElementById("filter-overlayer");
+    storage.domEles["header"] = document.getElementById("header");
+})();
+
+(() => {
+    const header = storage.domEles["header"];
+    const filterBody = storage.domEles["filter-body"];
     const maxSidebarHeight = window.innerHeight - header.offsetHeight;
     filterBody.style.top = `${header.offsetHeight}px`;
     filterBody.style.height = `${maxSidebarHeight}px`;
@@ -967,7 +1056,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         filterPanel.style.height = `${maxPanelHeight}px`;
     }
 
-    const overlay = document.getElementById("filter-overlayer");
+    const overlay = storage.domEles["filter-overlayer"];
     overlay.children[0].hidden = true;
 
     const openBtn = document.getElementById("mobile-filter-btn");
@@ -1013,8 +1102,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 })();
 
 (() => {
-    const filterBody = document.getElementById("filter-body");
-    const filterOverlay = document.getElementById("filter-overlayer");
+    const filterBody = storage.domEles["filter-body"];
+    const filterOverlay = storage.domEles["filter-overlayer"];
 
     const contentParent = document.getElementById("post-content").parentElement;
     const desktopParent = document.getElementById("single");
