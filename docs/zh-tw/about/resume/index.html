@@ -269,10 +269,10 @@
       "/zh-tw/about/",
       "/zh-tw/posts/first-bundle-post/",
       "/debug/color_debug.html",
-      "/debug/",
       "/zh-tw/posts/slicer-thinwall-nozzled-unexpected-fix/",
       "/zh-tw/",
       "/zh-tw/posts/3d-print-custom-and-special-support/",
+      "/zh-tw/creations/custom-special-support/",
       "/zh-tw/posts/post-1/",
       "/zh-tw/axes/",
       "/zh-tw/creations/what-is-this/",
@@ -622,17 +622,28 @@
     .tour-highlight {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      
-      mask-image: radial-gradient(ellipse var(--rx, 100px) var(--ry, 60px) at var(--x, 50%) var(--y, 50%), transparent 99%, black 100%);
+      background: radial-gradient(ellipse var(--rx, 100px) var(--ry, 60px) at var(--x, 50%) var(--y, 50%),
+        transparent 99%,
+        var(--color-primary-fixed-dim) 100%,
+        rgba(0, 0, 0, 0.86) 125%);
       pointer-events: auto;
       z-index: 9999;
     }
 
     #post-content {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 0.8rem;
 
-      & > div {
-        border-bottom: 1px solid var(--color-outline-variant);
+      & > .section-card {
+      border-radius: var(--shape-corner-l);
+      box-shadow: 0.1dvh 0.1dvh 0.6dvh 0 var(--color-inverse-surface);
+      padding-inline: 1rem;
+      
+        & > h4 {
+          border-bottom: 2px solid #555;
+          padding-bottom: 0.4rem;
+        }
       }
     }
 
@@ -701,7 +712,7 @@
       & > .panel {
         display: flex;
         flex-flow: column nowrap;
-        gap: 0.4dvh;
+        gap: 0.6dvh;
       }
     }
 
@@ -729,6 +740,7 @@
 
       &.active {
         background-color: var(--color-primary-fixed-dim);
+        box-shadow: 0.1rem 0.1rem 0.15rem 0 var(--color-primary-fixed-dim);
         color: #000000;
 
         &:not(.visible) {
@@ -737,7 +749,7 @@
       }
 
       &:not(.active) {
-        outline: 0.2dvh solid var(--color-on-surface);
+        box-shadow: 0.1rem 0.1rem 0.3rem 0 var(--color-on-surface);
       }
 
       &:not(.visible) {
@@ -995,7 +1007,7 @@
 
 <section class="footer-lower">
   <div class="">
-    <p>上次更新： 2025-06-29 11:05:42</p>
+    <p>上次更新： 2025-06-30 13:56:47</p>
   </div>
 
   <div class="">

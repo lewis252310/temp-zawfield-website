@@ -725,7 +725,8 @@ function refreshContent() {
             return null
         };
         const doc = parser.parseFromString(item["content"], "text/html");
-        const el = doc.body.firstChild;
+        const el = doc.body.firstElementChild;
+        el.classList.add("section-card")
         el.parentElement.removeChild(el);
         domMap[idx] = el;
         if (item["parent"]) {
