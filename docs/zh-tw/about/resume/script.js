@@ -417,6 +417,7 @@ function genFilterItemContent(display, id) {
         const textContainer = document.createElement("div");
         textContainer.classList = "label-container";
         const idTag = document.createElement("div");
+        idTag.className = "label-tag"
         idTag.textContent = `#${id}`;
         textContainer.dataset.action = "link";
         textContainer.append(text, idTag)
