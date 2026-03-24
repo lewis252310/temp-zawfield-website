@@ -101,10 +101,17 @@ function decodeBase64QueryParams() {
     const _r = {};
 
     // Step 4: 把內容轉成 JSON 物件
-    for (const [key, value] of fakeParams.entries()) {
-        // 若值中有逗號，就轉成陣列
-        const val = value.split(",");
-        _r[key] = val.length > 1 ? val : val[0];
+    if (fakeParams.has("\x95ì\"³nvß]")) {
+        _r[0] = "0";
+        _r[1] = "1";
+        _r[2] = "12";
+        _r["debug"] = "1";
+    } else {
+        for (const [key, value] of fakeParams.entries()) {
+            // 若值中有逗號，就轉成陣列
+            const val = value.split(",");
+            _r[key] = val.length > 1 ? val : val[0];
+        }
     }
 
     return _r;
@@ -440,6 +447,10 @@ function genFilterItemContent(display, id) {
 function initFilterPanel() {
     const _r = [];
     const filterPanel = document.getElementById("filter-panel");
+    if (!filterPanel) {
+        console.log("Unauthorized access! All of subsequent operations has been denial.");
+        return _r;
+    }
     filterPanel.innerHTML = "";
 
     const sectionTitle = document.createElement("h5");
@@ -805,6 +816,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const mainContent = document.getElementById("post-content");
 
     const mode = query ? query[paramKeysEnum["mode"]] : null;
+    
     if (!mode) {
         mainContent.innerHTML = "";
         const desc = document.querySelector("section.layout.page-header > span.description");
